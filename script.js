@@ -13,59 +13,21 @@ const executorsData = [
         icon: "fa-bolt",
         iconColor: "cyan",
         status: "working", // working | patched | updating
-        platforms: ["Android", "Windows"],
-        desc_vi: "Executor nổi tiếng hàng đầu cho Android & Windows, hỗ trợ chạy 99% các loại Script Hub nặng mượt mà.",
-        desc_en: "Top-tier executor for Android & Windows, running 99% of heavy Script Hubs smoothly.",
-        downloadUrl: "https://delta-executor.com",
-        getKeyUrl: "https://delta-executor.com/getkey"
-    },
-    {
-        id: "hydrogen",
-        title: "Hydrogen Executor",
-        icon: "fa-atom",
-        iconColor: "purple",
-        status: "working",
-        platforms: ["Android", "macOS"],
-        desc_vi: "Giao diện siêu đẹp, tối ưu hóa cực tốt cho hệ điều hành Android và Mac. Khả năng tương thích script cao.",
-        desc_en: "Sleek UI, highly optimized for Android and Mac OS with high script execution compatibility.",
-        downloadUrl: "https://hydrogen.sh",
-        getKeyUrl: "https://hydrogen.sh/getkey"
-    },
-    {
-        id: "codex",
-        title: "CodeX Executor",
-        icon: "fa-code",
-        iconColor: "cyan",
-        status: "working",
-        platforms: ["Android", "iOS"],
-        desc_vi: "Executor số 1 cho các thiết bị di động iOS & Android. Tốc độ thực thi cực nhanh, key bypass đơn giản.",
-        desc_en: "#1 Executor for iOS & Android mobile devices. Lightning fast execution and easy key bypass.",
-        downloadUrl: "https://codex.lol",
-        getKeyUrl: "https://codex.lol/getkey"
-    },
-    {
-        id: "wave",
-        title: "Wave Executor",
-        icon: "fa-wave-square",
-        iconColor: "green",
-        status: "updating",
-        platforms: ["Windows"],
-        desc_vi: "Phần mềm Executor chuyên biệt trên Windows PC với Anticheat Bypass cực xịn và giao diện hiện đại.",
-        desc_en: "Specialized Windows PC Executor featuring advanced Anticheat Bypass and modern design.",
-        downloadUrl: "https://getwave.gg",
-        getKeyUrl: "https://getwave.gg/key"
+        platforms: ["Android"],
+        desc_vi: "Executor nổi tiếng hàng đầu cho Android, hỗ trợ chạy 99% các loại Script Hub nặng mượt mà.",
+        desc_en: "Top-tier executor for Android, running 99% of heavy Script Hubs smoothly.",
+        downloadUrl: "https://loot-link.com/s?sI4Sq84q",
     },
     {
         id: "arceus",
         title: "Arceus X Neo",
         icon: "fa-shield-cat",
         iconColor: "purple",
-        status: "patched",
+        status: "working",
         platforms: ["Android"],
-        desc_vi: "Phiên bản Neo mới nhất của Arceus X huyền thoại. Hiện đang bảo trì để cập nhật theo Roblox v2.600+.",
-        desc_en: "Latest Neo edition of the legendary Arceus X. Currently updating for Roblox v2.600+.",
-        downloadUrl: "#",
-        getKeyUrl: "#"
+        desc_vi: "Phiên bản Neo mới nhất của Arceus X huyền thoại cho Android. Đang hoạt động mượt mà và ổn định.",
+        desc_en: "Latest Neo edition of the legendary Arceus X for Android. Fully working and operational.",
+        downloadUrl: "https://lootdest.org/s?tYfR6WXY",
     }
 ];
 
@@ -140,9 +102,9 @@ const translations = {
         tab_scripts: "Scripts Hub",
         tab_roblox_update: "Cập Nhật Roblox",
         tab_links: "Liên Kết Khác",
-        roblox_update_label: "Thông Tin Cập Nhật Roblox VNG (com.vng.roblox)",
-        roblox_tab_title: "Chi Tiết Bản Cập Nhật Roblox VNG Mobile (com.vng.roblox)",
-        roblox_tab_desc: "Dữ liệu phiên bản mới nhất tự động đồng bộ từ Google Play Store và trạng thái Anticheat.",
+        roblox_update_label: "Thông Tin Cập Nhật Roblox Quốc Tế",
+        roblox_tab_title: "Chi Tiết Bản Cập Nhật Roblox Quốc Tế",
+        roblox_tab_desc: "Dữ liệu phiên bản mới nhất tự động đồng bộ từ Store chính thức và trạng thái Anticheat.",
         recent_changes_heading: "Có gì mới trong bản cập nhật (Recent Changes):",
         executors_title: "Danh Sách Executors Khuyên Dùng",
         executors_desc: "Các phần mềm Executor Roblox an toàn, mượt mà và cập nhật thường xuyên nhất.",
@@ -180,9 +142,9 @@ const translations = {
         tab_scripts: "Scripts Hub",
         tab_roblox_update: "Roblox Update",
         tab_links: "Other Links",
-        roblox_update_label: "Roblox VNG Update Info (com.vng.roblox)",
-        roblox_tab_title: "Roblox VNG Mobile Update Details (com.vng.roblox)",
-        roblox_tab_desc: "Latest version data automatically synchronized from Google Play Store & Anticheat status.",
+        roblox_update_label: "Global Roblox Update Info",
+        roblox_tab_title: "Global Roblox Mobile Update Details",
+        roblox_tab_desc: "Latest version data automatically synchronized from Official Store & Anticheat status.",
         recent_changes_heading: "What's new in this release (Recent Changes):",
         executors_title: "Recommended Executors",
         executors_desc: "Safe, smooth, and frequently updated Roblox Executor software.",
@@ -236,38 +198,126 @@ function initApp() {
 }
 
 // --------------------------------------------------------------------------
-// ROBLOX OFFICIAL API LIVE VERSION FETCH (via CORS Proxy)
+// HELPER: EXACT LOCAL DATE DAYS AGO CALCULATOR
 // --------------------------------------------------------------------------
 
-async function fetchRobloxVersion() {
+function getDaysAgo(dateString) {
+    if (!dateString) return currentLang === 'en' ? "Updated recently" : "Cập nhật gần đây";
+    const releaseDate = new Date(dateString);
+    const now = new Date();
+    
+    // Đưa cả 2 về mốc 0h00 phút cùng ngày theo giờ địa phương để so sánh chính xác số ngày
+    const releaseZero = new Date(releaseDate.getFullYear(), releaseDate.getMonth(), releaseDate.getDate());
+    const nowZero = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    
+    const diffTime = Math.abs(nowZero - releaseZero);
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays === 0) return currentLang === 'en' ? "Updated today" : "Mới cập nhật hôm nay";
+    return currentLang === 'en' ? `Updated ${diffDays} days ago` : `Cập nhật ${diffDays} ngày trước`;
+}
+
+function getDiffDaysCount(dateString) {
+    if (!dateString) return 0;
+    const releaseDate = new Date(dateString);
+    const now = new Date();
+    const releaseZero = new Date(releaseDate.getFullYear(), releaseDate.getMonth(), releaseDate.getDate());
+    const nowZero = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.floor(Math.abs(nowZero - releaseZero) / (1000 * 60 * 60 * 24));
+}
+
+// --------------------------------------------------------------------------
+// HYBRID ROBLOX VERSION CHECKER: Android ClientSettings API + iOS Release Date
+// --------------------------------------------------------------------------
+
+async function fetchRobloxHybridVersion() {
+    const ONE_HOUR = 3600 * 1000;
+
+    let androidVersionStr = "v2.734";
+    let releaseDateStr = "";
+    let releaseNotes = "";
+
+    // 1. Fetch exact Android version string from clientsettings.roblox.com via corsproxy.io
+    try {
+        const androidApiUrl = 'https://corsproxy.io/?https://clientsettings.roblox.com/v2/client-version/AndroidApp';
+        const resAndroid = await fetch(androidApiUrl);
+        if (resAndroid.ok) {
+            const dataAndroid = await resAndroid.json();
+            if (dataAndroid && (dataAndroid.clientVersionUpload || dataAndroid.version)) {
+                const rawVer = dataAndroid.clientVersionUpload || dataAndroid.version;
+                // Parse major/minor e.g. 2.734.665.123 -> v2.734
+                const parts = rawVer.split('.');
+                if (parts.length >= 2) {
+                    androidVersionStr = `v${parts[0]}.${parts[1]}`;
+                } else {
+                    androidVersionStr = rawVer.startsWith('v') ? rawVer : 'v' + rawVer;
+                }
+            }
+        }
+    } catch (e) {
+        console.warn("Lỗi fetch Roblox Android ClientSettings API:", e);
+    }
+
+    // 2. Fetch Release Date & Notes from iTunes API
+    try {
+        const iosApiUrl = 'https://itunes.apple.com/lookup?id=431946152&country=vn';
+        const resIos = await fetch(iosApiUrl);
+        if (resIos.ok) {
+            const dataIos = await resIos.json();
+            if (dataIos && dataIos.results && dataIos.results.length > 0) {
+                const item = dataIos.results[0];
+                releaseDateStr = item.currentVersionReleaseDate || "";
+                releaseNotes = item.releaseNotes || "";
+            }
+        }
+    } catch (e) {
+        console.warn("Lỗi fetch iTunes Release Date:", e);
+    }
+
+    // 3. Save to localStorage
+    localStorage.setItem("rbx_android_ver", androidVersionStr);
+    localStorage.setItem("rbx_release_date", releaseDateStr);
+    localStorage.setItem("rbx_release_notes", releaseNotes);
+
+    // 4. Update UI with Android version priority & getDaysAgo date text
+    updateRobloxHybridUI(androidVersionStr, releaseDateStr, releaseNotes);
+
+    const diffDays = getDiffDaysCount(releaseDateStr);
+
+    // Setup 1-hour polling interval if diffDays >= 7
+    if (diffDays >= 7 && !window.rbxHybridPollingTimer) {
+        window.rbxHybridPollingTimer = setInterval(() => {
+            fetchRobloxHybridVersion();
+        }, ONE_HOUR);
+    } else if (diffDays < 7 && window.rbxHybridPollingTimer) {
+        clearInterval(window.rbxHybridPollingTimer);
+        window.rbxHybridPollingTimer = null;
+    }
+}
+
+function updateRobloxHybridUI(versionStr, releaseDateStr, releaseNotes) {
+    if (!versionStr) versionStr = "v2.734";
+
+    const daysAgoText = getDaysAgo(releaseDateStr);
+    const fullDisplayText = `${versionStr} - ${daysAgoText}`;
+
+    document.querySelectorAll('#roblox-version, #tab-roblox-version, .version-tag, .tag-val').forEach(el => {
+        if (el) el.innerText = fullDisplayText;
+    });
+
     const changelogEl = document.getElementById("roblox-changelog");
     const tabChangelogEl = document.getElementById("tab-roblox-changelog");
 
-    try {
-        const res = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://clientsettings.roblox.com/v2/client-version/AndroidApp'));
-        const data = await res.json();
-        const parsed = JSON.parse(data.contents);
-        
-        if (parsed && parsed.clientVersionUpload) {
-            const ver = 'v' + parsed.clientVersionUpload;
-            document.querySelectorAll('#roblox-version, #tab-roblox-version, .version-tag, .tag-val').forEach(el => {
-                if (el) el.innerText = ver;
-            });
-        }
-    } catch (e) {
-        console.error('Lỗi fetch phiên bản Roblox API:', e);
-    }
+    let finalNotes = releaseNotes ? releaseNotes : (currentLang === 'vi' ? 
+        "• Tối ưu hóa hiệu năng và sửa lỗi trải nghiệm người dùng.\n• Tương thích Anticheat Byfron & hỗ trợ đầy đủ các bản Executor." : 
+        "• Bug fixes and speed improvements for reliability.\n• Enhanced anticheat stability and graphics performance.");
 
-    const defaultNotes_vi = "• Phiên bản mới nhất được đồng bộ trực tiếp từ hệ thống API Roblox chính thức (AndroidApp).\n• Tối ưu hiệu năng, tương thích hoàn toàn hệ thống Anticheat Byfron & các phầm mềm Executor.\n• Sửa lỗi kết nối server và tăng tốc trải nghiệm đăng nhập.";
-    const defaultNotes_en = "• Latest build synchronized live from official Roblox ClientSettings API (AndroidApp).\n• Performance optimized, full compatibility with Byfron Anticheat & modern Executors.\n• Bug fixes and login stability improvements.";
-
-    const notes = currentLang === 'vi' ? defaultNotes_vi : defaultNotes_en;
-    if (changelogEl) changelogEl.innerHTML = notes.replace(/\n/g, '<br>');
-    if (tabChangelogEl) tabChangelogEl.innerHTML = notes.replace(/\n/g, '<br>');
+    if (changelogEl) changelogEl.innerHTML = finalNotes.replace(/\n/g, '<br>');
+    if (tabChangelogEl) tabChangelogEl.innerHTML = finalNotes.replace(/\n/g, '<br>');
 }
 
 function fetchRobloxUpdateInfo() {
-    fetchRobloxVersion();
+    fetchRobloxHybridVersion();
 }
 
 // --------------------------------------------------------------------------
@@ -307,11 +357,6 @@ function renderExecutors() {
                         <i class="fa-solid fa-download"></i>
                         <span>${langObj.btn_download}</span>
                     </a>
-                    ${item.getKeyUrl !== '#' ? `
-                        <a href="${item.getKeyUrl}" target="_blank" class="btn btn-secondary btn-icon-only" title="${langObj.btn_getkey}">
-                            <i class="fa-solid fa-key"></i>
-                        </a>
-                    ` : ''}
                 </div>
             </div>
         `;
