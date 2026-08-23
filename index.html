@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexGen | Bio & Script Hub</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Canvas background effect -->
+    <div class="bg-glow-container">
+        <div class="glow-sphere sphere-1"></div>
+        <div class="glow-sphere sphere-2"></div>
+        <div class="glow-sphere sphere-3"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="app-container">
+        <!-- Top Utility Bar (Language Switcher & Status) -->
+        <header class="top-bar">
+            <div class="system-status">
+                <span class="status-pulse"></span>
+                <span data-i18n="sys_online">Hệ thống: Hoạt động</span>
+            </div>
+            <div class="lang-switcher">
+                <button id="lang-btn" class="lang-toggle-btn">
+                    <i class="fa-solid fa-globe"></i>
+                    <span id="current-lang-text">VIE (VN)</span>
+                    <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                </button>
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <button class="lang-option active" data-lang="vi">
+                        <span class="flag">🇻🇳</span> Tiếng Việt
+                    </button>
+                    <button class="lang-option" data-lang="en">
+                        <span class="flag">🇬🇧</span> English
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Profile Card Header -->
+        <section class="profile-card">
+            <div class="profile-avatar-wrapper">
+                <img src="avatar.jpg" alt="Avatar" class="profile-avatar" id="user-avatar">
+                <div class="avatar-glow"></div>
+                <div class="online-indicator" title="Online"></div>
+            </div>
+
+            <div class="profile-info">
+                <div class="name-row">
+                    <h1 class="user-name">NGH Roblox <i class="fa-solid fa-circle-check verified-badge" title="Verified Creator"></i></h1>
+                    <span class="role-tag">Developer & Scripter</span>
+                </div>
+                <p class="user-handle">@nghroblox123</p>
+                <p class="user-bio" data-i18n="user_bio">
+                    👋 Chào mừng bạn đến với trang cá nhân của tôi! Chia sẻ các Executors mượt mà, Script Roblox chất lượng cao & công cụ miễn phí.
+                </p>
+
+                <!-- Stats counter -->
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-executors-val">0</span>
+                        <span class="stat-label" data-i18n="stat_executors">Executors</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-scripts-val">0</span>
+                        <span class="stat-label" data-i18n="stat_scripts">Scripts</span>
+                    </div>
+                </div>
+
+                <!-- Social Media Links -->
+                <div class="social-links-grid">
+                    <a href="https://discord.gg/xrdNgaKRfG" target="_blank" class="social-btn discord" title="Join Discord">
+                        <i class="fa-brands fa-discord"></i>
+                        <span>Discord</span>
+                    </a>
+                    <a href="https://www.youtube.com/@NGHRoblox123" target="_blank" class="social-btn youtube" title="YouTube Channel">
+                        <i class="fa-brands fa-youtube"></i>
+                        <span>YouTube</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@ngh_roblox123" target="_blank" class="social-btn tiktok" title="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                        <span>TikTok</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roblox Live Update Info Card (com.vng.roblox) -->
+        <section class="roblox-update-card">
+            <div class="update-card-header">
+                <div class="update-title-wrap">
+                    <i class="fa-brands fa-google-play play-icon"></i>
+                    <span class="update-label" data-i18n="roblox_update_label">Thông Tin Cập Nhật Roblox VNG (com.vng.roblox)</span>
+                </div>
+                <span class="version-badge" id="roblox-version">Đang tải...</span>
+            </div>
+            <div class="update-card-body">
+                <div class="changelog-text" id="roblox-changelog">
+                    <i class="fa-solid fa-spinner fa-spin"></i> Đang tải thông tin cập nhật mới nhất từ Google Play...
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="executors">
+                <i class="fa-solid fa-bolt"></i>
+                <span data-i18n="tab_executors">Executors</span>
+                <span class="tab-badge" id="executors-count">0</span>
+            </button>
+            <button class="tab-btn" data-tab="scripts">
+                <i class="fa-solid fa-code"></i>
+                <span data-i18n="tab_scripts">Scripts Hub</span>
+                <span class="tab-badge" id="scripts-count">0</span>
+            </button>
+            <button class="tab-btn" data-tab="roblox-update">
+                <i class="fa-brands fa-google-play"></i>
+                <span data-i18n="tab_roblox_update">Cập Nhật Roblox</span>
+            </button>
+            <button class="tab-btn" data-tab="links">
+                <i class="fa-solid fa-link"></i>
+                <span data-i18n="tab_links">Liên Kết Khác</span>
+            </button>
+        </nav>
+
+        <!-- Tab Content Areas -->
+        <main class="tab-content-container">
+
+            <!-- TAB 1: EXECUTORS -->
+            <section id="tab-executors" class="tab-pane active">
+                <div class="pane-header">
+                    <h2 data-i18n="executors_title">Danh Sách Executors Khuyên Dùng</h2>
+                    <p data-i18n="executors_desc">Các phần mềm Executor Roblox an toàn, mượt mà và cập nhật thường xuyên nhất.</p>
+                </div>
+
+                <div class="cards-grid" id="executors-list">
+                    <!-- Dynamic rendering via script.js -->
+                </div>
+            </section>
+
+            <!-- TAB 2: SCRIPTS HUB -->
+            <section id="tab-scripts" class="tab-pane">
+                <div class="pane-header">
+                    <div class="pane-title-group">
+                        <h2 data-i18n="scripts_title">Thư Viện Script Roblox</h2>
+                        <p data-i18n="scripts_desc">Tổng hợp Script Auto Farm, Keyless, Hub vip tối ưu nhất.</p>
+                    </div>
+
+                    <!-- Search & Filter Controls -->
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="script-search-input" placeholder="Tìm kiếm script hoặc tên game..." data-i18n-placeholder="search_placeholder">
+                        <button id="clear-search-btn" class="clear-btn" style="display: none;">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="filter-chips" id="game-filters">
+                    <button class="chip active" data-filter="all" data-i18n="filter_all">Tất cả Game</button>
+                    <button class="chip" data-filter="Blox Fruits">Blox Fruits</button>
+                    <button class="chip" data-filter="King Legacy">King Legacy</button>
+                    <button class="chip" data-filter="Blade Ball">Blade Ball</button>
+                    <button class="chip" data-filter="Universal">Universal</button>
+                </div>
+
+                <div class="cards-grid" id="scripts-list">
+                    <!-- Dynamic rendering via script.js -->
+                </div>
+            </section>
+
+            <!-- TAB 3: ROBLOX UPDATE INFO -->
+            <section id="tab-roblox-update" class="tab-pane">
+                <div class="pane-header">
+                    <h2 data-i18n="roblox_tab_title">Chi Tiết Bản Cập Nhật Roblox VNG Mobile (com.vng.roblox)</h2>
+                    <p data-i18n="roblox_tab_desc">Dữ liệu phiên bản mới nhất tự động đồng bộ từ Google Play Store và trạng thái Anticheat.</p>
+                </div>
+
+                <div class="roblox-update-detail-card">
+                    <div class="detail-header">
+                        <div class="app-icon-wrap">
+                            <i class="fa-brands fa-google-play store-icon"></i>
+                        </div>
+                        <div class="app-info">
+                            <h3>Roblox VNG Mobile</h3>
+                            <span class="app-vendor">App ID: <code>com.vng.roblox</code> • Google Play Store</span>
+                            <div class="version-tag-row">
+                                <span class="tag-label">Version:</span>
+                                <span class="tag-val" id="tab-roblox-version">Đang tải...</span>
+                                <span class="badge working"><i class="fa-solid fa-circle-check"></i> Latest Version</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-body">
+                        <h4 data-i18n="recent_changes_heading"><i class="fa-solid fa-sparkles"></i> Có gì mới trong bản cập nhật (Recent Changes):</h4>
+                        <div class="changelog-content-box" id="tab-roblox-changelog">
+                            <i class="fa-solid fa-spinner fa-spin"></i> Đang tải dữ liệu từ Google Play Store...
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: OTHER LINKS & BIO -->
+            <section id="tab-links" class="tab-pane">
+                <div class="pane-header">
+                    <h2 data-i18n="links_title">Liên Kết & Thông Tin Khác</h2>
+                    <p data-i18n="links_desc">Các trang dự phòng, donate và cộng đồng chính thức.</p>
+                </div>
+
+                <div class="quick-links-list">
+                    <a href="#" class="quick-link-card">
+                        <div class="link-icon-box cyan">
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                        </div>
+                        <div class="link-content">
+                            <h3 data-i18n="donate_title">Ủng Hộ / Donate (PlayerDuo / MoMo)</h3>
+                            <p data-i18n="donate_desc">Hỗ trợ kinh phí duy trì hosting và cập nhật script mới.</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square external-icon"></i>
+                    </a>
+
+                    <a href="#" class="quick-link-card">
+                        <div class="link-icon-box purple">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <div class="link-content">
+                            <h3 data-i18n="community_title">Cộng Đồng Roblox Việt Nam</h3>
+                            <p data-i18n="community_desc">Nơi trao đổi, trợ giúp lỗi executor và nhận script miễn phí.</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square external-icon"></i>
+                    </a>
+
+                    <a href="#" class="quick-link-card">
+                        <div class="link-icon-box green">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div class="link-content">
+                            <h3 data-i18n="status_page_title">Trang Kiểm Tra Trạng Thái Bypass</h3>
+                            <p data-i18n="status_page_desc">Xem chi tiết trạng thái Bypass Byfron & Anticheat thời gian thực.</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square external-icon"></i>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>© 2026 <strong>NGH Roblox Bio & Script Hub</strong>. Created with <i class="fa-solid fa-heart heart-icon"></i> for Roblox Community.</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification Popup -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Modal View Script Code -->
+    <div id="script-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="modal-title-wrap">
+                    <i class="fa-solid fa-code modal-icon"></i>
+                    <h3 id="modal-script-title">Script Code</h3>
+                </div>
+                <button class="modal-close-btn" id="modal-close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <pre><code id="modal-code-content">-- Script loading...</code></pre>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="modal-copy-btn">
+                    <i class="fa-regular fa-copy"></i>
+                    <span data-i18n="btn_copy">Sao chép Code</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main JavaScript Logic -->
+    <script src="script.js"></script>
+</body>
+</html>
