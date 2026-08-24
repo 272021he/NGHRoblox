@@ -33,19 +33,91 @@ const executorsData = [
 
 const scriptsData = [
     {
-        id: "blox-fruits-redz",
-        title: "Redz Hub Auto Farm",
+        id: "blox-fruits-annie",
+        title: "Annie Hub",
         game: "Blox Fruits",
         isKeyless: true,
-        desc_vi: "Script Blox Fruits mượt nhất hiện tại: Auto Farm Level, Auto Sea Events, Auto Raid & Mastery 600.",
-        desc_en: "Smooth Blox Fruits script: Auto Farm Level, Auto Sea Events, Auto Raid & Mastery 600.",
-        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/redz-999/BloxFruits/main/RedzHub.lua"))()`
+        desc_vi: "Script Blox Fruits miễn phí từ Annie Hub, hỗ trợ Auto Farm, Auto Quest và nhiều tính năng hữu ích.",
+        desc_en: "Free Blox Fruits script from Annie Hub with Auto Farm, Auto Quest and many useful features.",
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Anniecuti/Free-Scr/main/Annie-Hub.lua"))()`
+    },
+    {
+        id: "blox-fruits-luarmor",
+        title: "Luarmor Script",
+        game: "Blox Fruits",
+        isKeyless: true,
+        desc_vi: "Script Blox Fruits mạnh mẽ được bảo vệ bởi Luarmor, chạy mượt mà và ổn định trên mọi Executor.",
+        desc_en: "Powerful Blox Fruits script protected by Luarmor, runs smoothly and stably on all Executors.",
+        code: `loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()`
+    },
+    {
+        id: "blox-fruits-andepzai",
+        title: "AnDepZai Hub Beta",
+        game: "Blox Fruits",
+        isKeyless: true,
+        desc_vi: "Hub Blox Fruits phiên bản Beta từ AnDepZai, giao diện tiếng Việt dễ dùng, Auto Farm đa năng.",
+        desc_en: "Blox Fruits Beta Hub from AnDepZai, Vietnamese UI, versatile Auto Farm features.",
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/AnDepZaiHub/AnDepZaiHubBeta/main/AnDepZaiHubBeta.lua"))()`
+    },
+    {
+        id: "blox-fruits-faifao",
+        title: "Fai Fao Ver2",
+        game: "Blox Fruits",
+        isKeyless: true,
+        desc_vi: "Script Blox Fruits Fai Fao phiên bản 2, Auto Farm Level nhanh, giao diện gọn nhẹ và dễ sử dụng.",
+        desc_en: "Blox Fruits Fai Fao Version 2, fast Auto Farm Level, lightweight and easy-to-use interface.",
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/PNguyen0199/Script/main/Fai-Fao-Ver2.lua"))()`
+    },
+    {
+        id: "blox-fruits-matsune",
+        title: "Matsune Hub V1",
+        game: "Blox Fruits",
+        isKeyless: true,
+        desc_vi: "Matsune Hub phiên bản 1 dành cho Blox Fruits, đầy đủ tính năng Auto Farm, Auto Raid và Teleport.",
+        desc_en: "Matsune Hub V1 for Blox Fruits, full features including Auto Farm, Auto Raid and Teleport.",
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/Yatsuraa/Matsune/main/matsunehubv1.lua"))()`
+    },
+    {
+        id: "blox-fruits-redz",
+        title: "Redz Hub",
+        game: "Blox Fruits",
+        isKeyless: true,
+        desc_vi: "Redz Hub dành cho Blox Fruits, Auto Farm mượt mà, hỗ trợ Auto Sea Events và nhiều tính năng khác.",
+        desc_en: "Redz Hub for Blox Fruits, smooth Auto Farm, supports Auto Sea Events and many other features.",
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()`
+    },
+    {
+        id: "blox-fruits-plshubpro",
+        title: "PlsHub Pro Hunt Egg",
+        game: "Blox Fruits",
+        isKeyless: true,
+        desc_vi: "Script Hunt Egg từ PlsHub Pro, hỗ trợ tự động săn trứng sự kiện Blox Fruits nhanh chóng.",
+        desc_en: "Hunt Egg script from PlsHub Pro, auto hunt event eggs in Blox Fruits quickly.",
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/PlsHubPro/Script-HuntEgg/refs/heads/main/txt"))()`
+    },
+    {
+        id: "blox-fruits-spectrum",
+        title: "Spectrum Main Farm",
+        game: "Blox Fruits",
+        isKeyless: true,
+        desc_vi: "Script Auto Farm chính từ Spectrum, chạy ổn định và hỗ trợ nhiều tính năng farm tự động.",
+        desc_en: "Main Auto Farm script from Spectrum, stable and supports many auto farming features.",
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/spectrumxx/mainfarm/refs/heads/main/loader.lua"))()`
+    },
+    {
+        id: "blox-fruits-whitex",
+        title: "WhiteX Hop Script",
+        game: "Blox Fruits",
+        isKeyless: true,
+        desc_vi: "Script Hop Server từ WhiteX, hỗ trợ nhảy server tìm trái, tìm raid và nhiều tính năng khác.",
+        desc_en: "Server Hop script from WhiteX, hop servers to find fruits, raids and more.",
+        code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/HopScript.luau"))()`
     },
     {
         id: "blox-fruits-hoho",
         title: "Hoho Hub V3",
         game: "Blox Fruits",
-        isKeyless: false,
+        isKeyless: true,
         desc_vi: "Hub đa năng nổi tiếng với giao diện tiếng Việt dễ dùng, Auto Race V4, Auto Mirage & Teleport đảo.",
         desc_en: "Popular multi-feature hub with Race V4 auto, Mirage Island tracker and fast Teleport.",
         code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_HUB/main/Loading_v3.lua"))()`
